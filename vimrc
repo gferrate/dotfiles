@@ -1,6 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-execute pathogen#infect()
+"execute pathogen#infect()
 call plug#begin('~/.vim/plugged')
 
 " set the runtime path to include Vundle and initialize
@@ -26,6 +26,7 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'crusoexia/vim-monokai'
 Plug 'vim-python/python-syntax'
 Plug 'pangloss/vim-javascript'
+Plug 'altercation/vim-colors-solarized'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
