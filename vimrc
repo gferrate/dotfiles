@@ -27,6 +27,7 @@ Plug 'crusoexia/vim-monokai'
 Plug 'vim-python/python-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'altercation/vim-colors-solarized'
+Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
