@@ -28,6 +28,8 @@ Plug 'vim-python/python-syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'altercation/vim-colors-solarized'
 Plug 'Matt-Deacalion/vim-systemd-syntax'
+Plug 'scrooloose/nerdtree'          "nerd-tree
+"Plug 'ryanoasis/vim-devicons'       "dev-icons of files
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -102,6 +104,25 @@ let g:python_highlight_all = 1
 let g:javascript_plugin_jsdoc = 1
 
 
+" ------ RUN NERDTREE automatically ------ "
+" keep the focus on main window
+augroup NERD
+    au!
+    autocmd VimEnter * NERDTree
+    autocmd VimEnter * wincmd p
+augroup END
+" close NerdTree together with the last buffer oppened
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ------------- DEVICONS ----------------- "
+" whether or not to show the nerdtree brackets around flags
+let g:webdevicons_conceal_nerdtree_brackets = 0
+" Devicons in
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_ctrlp = 1
+
+
 " General Mappings and custom commands ########################################
 
 map <C-h> <C-W>h<C-W>_
@@ -123,3 +144,18 @@ nnoremap <space> za
 
 " Remove SignColumn color
 highlight clear SignColumn
+
+" Remove trailing whitespaces in python files
+autocmd BufWritePre *.py %s/\s\+$//e
+
+"vim pureta
+let vimpureta=1
+if vimpureta
+    map <up> <nop>
+    map <down> <nop>
+    map <left> <nop>
+    map <right> <nop>
+endif
+
+"CTRL+N open/close NerdTree
+map <C-n> :NERDTreeToggle<CR>
