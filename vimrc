@@ -30,6 +30,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'scrooloose/nerdtree'          "nerd-tree
 "Plug 'ryanoasis/vim-devicons'       "dev-icons of files
+Plug 'maksimr/vim-jsbeautify'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -159,3 +160,46 @@ endif
 
 "CTRL+N open/close NerdTree
 map <C-n> :NERDTreeToggle<CR>
+
+
+""" ##################### JS BEAUTIFLIER ################
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for json
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+" for jsx
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+
+"Add this to ~/.vim/editorconfig
+"
+"";.editorconfig
+"
+"root = true
+"
+"[**.js]
+"indent_style = space
+"indent_size = 4
+"
+"[**.json]
+"indent_style = space
+"indent_size = 4
+"
+"[**.jsx]
+"e4x = true
+"indent_style = space
+"indent_size = 4
+"
+"[**.css]
+"indent_style = space
+"indent_size = 4
+"
+"[**.html]
+"indent_style = space
+"indent_size = 4
+
+""##############################################
+
