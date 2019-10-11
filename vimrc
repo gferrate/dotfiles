@@ -29,6 +29,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'altercation/vim-colors-solarized'
 Plug 'Matt-Deacalion/vim-systemd-syntax'
 Plug 'scrooloose/nerdtree'          "nerd-tree
+Plug 'zivyangll/git-blame.vim'          "git-blame in the status bar
 "Plug 'ryanoasis/vim-devicons'       "dev-icons of files
 Plug 'maksimr/vim-jsbeautify'
 Plug 'autozimu/LanguageClient-neovim', {
@@ -143,6 +144,9 @@ nnoremap <leader><space> :nohlsearch<CR>
 "Fold 
 nnoremap <space> za
 
+" -------------- GIT BLAME -------------- "
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
+
 " Remove SignColumn color
 highlight clear SignColumn
 
@@ -202,4 +206,3 @@ autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 "indent_size = 4
 
 ""##############################################
-
