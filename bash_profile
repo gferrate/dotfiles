@@ -1,8 +1,12 @@
 #export PS1="\[\033[38;5;1m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;4m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\] @ \[$(tput sgr0)\]\[\033[38;5;46m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\\[\033[32m\]\$(parse_git_branch)\[\033[00m\] \n$ \[$(tput sgr0)\]"
 export PS1="🍻 \[\033[38;5;6m\][\w]\[\033[33m\]\$(parse_git_branch)$\[\033[00m\]\[$(tput sgr0)\]\[\033[38;5;15m\]\[$(tput sgr0)\] "
 #pyjoke -c all
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.6
-export WORKON_HOME=~/Envs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export WORKON_HOME=~/.virtualenvs
+export LANG=es_ES.UTF-8
+export LC_CTYPE=es_ES.UTF-8
+export LC_ALL=es_ES.UTF-8
 mkdir -p $WORKON_HOME
 source /usr/local/bin/virtualenvwrapper.sh
 #export PATH=/usr/local/Cellar/python/3.6.5_1/bin/python3.6:$PATH

@@ -108,11 +108,11 @@ let g:javascript_plugin_jsdoc = 1
 
 " ------ RUN NERDTREE automatically ------ "
 " keep the focus on main window
-augroup NERD
-    au!
-    autocmd VimEnter * NERDTree
-    autocmd VimEnter * wincmd p
-augroup END
+"augroup NERD
+"    au!
+"    autocmd VimEnter * NERDTree
+"    autocmd VimEnter * wincmd p
+"augroup END
 " close NerdTree together with the last buffer oppened
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
