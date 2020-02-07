@@ -9,6 +9,9 @@ Backup and remove your `~/.vimrc`, `~/.vim` and `~/.bash_profile` files.
 
 Clone the repo and run the setup.sh file.
 
-Open vim and run `:PlugInstall`
+Open vim and run the commands:
+
+`:PlugInstall`
+`:LanguageClientStart`
 
 Enjoy!
