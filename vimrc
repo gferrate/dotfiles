@@ -29,7 +29,11 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+Plug 'junegunn/fzf'
 Plug 'raphamorim/lucario'
+Plug 'wincent/terminus'
+Plug 'lepture/vim-jinja'
+
 
 call plug#end()
 
@@ -37,6 +41,7 @@ call plug#end()
 syntax enable
 filetype plugin indent on
 set hlsearch
+set wildmode=list:longest,full
 set autoindent nosmartindent
 set nostartofline
 set number
@@ -48,20 +53,18 @@ set scrolloff=8
 set enc=utf-8
 set mouse=a
 set hidden
+set relativenumber
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,venv/*
-set ttymouse=sgr "Mouse works after col 220
+"set ttymouse=sgr "Mouse works after col 220
 set cursorline
 set signcolumn=yes
 
 " GO TO DEFINITION ############################################################
 set hidden
 
+" Old pyls: \ 'python': ['/usr/local/bin/pyls'],
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ 'python': ['~/.pyenv/versions/3.6.7/lib/python3.6/site-packages/pyls']
     \ }
 
 
@@ -133,3 +136,7 @@ autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+" Jinja highliting ############################################################
+au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
+
