@@ -4,7 +4,6 @@ call plug#begin('~/.vim/plugged')
 
 " Set the runtime path to include Vundle and initialize #######################
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-set runtimepath+=~/.vim-plugins/LanguageClient-neovim
 
 " Plugins #####################################################################
 " Plug 'ajh17/VimCompletesMe'
@@ -25,10 +24,6 @@ Plug 'posva/vim-vue'
 Plug 'zivyangll/git-blame.vim'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'tpope/vim-surround'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'junegunn/fzf'
 Plug 'raphamorim/lucario'
 Plug 'wincent/terminus'
@@ -53,24 +48,14 @@ set scrolloff=8
 set enc=utf-8
 set mouse=a
 set hidden
-set relativenumber
+"set relativenumber
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,venv/*
 "set ttymouse=sgr "Mouse works after col 220
 set cursorline
 set signcolumn=yes
 
 " GO TO DEFINITION ############################################################
-set hidden
 
-" Old pyls: \ 'python': ['/usr/local/bin/pyls'],
-let g:LanguageClient_serverCommands = {
-    \ 'python': ['~/.pyenv/versions/3.6.7/lib/python3.6/site-packages/pyls']
-    \ }
-
-
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " Colorscheme #################################################################
 colorscheme lucario
@@ -140,3 +125,5 @@ autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 " Jinja highliting ############################################################
 au BufNewFile,BufRead *.html,*.htm,*.shtml,*.stm set ft=jinja
 
+
+" font: https://github.com/tonsky/FiraCode
