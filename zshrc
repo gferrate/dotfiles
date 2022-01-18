@@ -22,6 +22,10 @@ export WORKON_HOME=~/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=~/.pyenv/versions/3.9.2/bin/python
 source .pyenv/versions/3.9.2/bin/virtualenvwrapper.sh
 
+# Openssl
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib -L${HOME}/.pyenv/versions/3.9.2/lib"
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/gferrate/.oh-my-zsh"
@@ -128,3 +132,4 @@ fi
 
 #export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 #export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
+export PATH="/usr/local/opt/libpq/bin:$PATH"
