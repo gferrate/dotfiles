@@ -84,7 +84,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions autojump autopep8)
+plugins=(git zsh-autosuggestions autojump autopep8 zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,7 +110,8 @@ alias tailf='tail -f'
 alias pyc='find . -name "*.pyc" -exec rm -f {} \;'
 alias ipython='python3 -m IPython'
 
-source /Users/gferrate/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /Users/gferrate/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /Users/gferrate/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 # ssh autocomplete
 zstyle ':completion:*:ssh:*' hosts off
