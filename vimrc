@@ -26,6 +26,7 @@ Plug 'maksimr/vim-jsbeautify'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf'
 Plug 'raphamorim/lucario'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'wincent/terminus'
 Plug 'lepture/vim-jinja'
 
@@ -59,6 +60,11 @@ set signcolumn=yes
 
 " Colorscheme #################################################################
 colorscheme lucario
+set t_Co=256   " This is may or may not needed.
+
+"set background=light
+"colorscheme PaperColor
+
 " Solarized stuff
 "let g:solarized_termtrans = 1
 "set background=light

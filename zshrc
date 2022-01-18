@@ -1,10 +1,18 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$PATH
+export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
+
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
 
 # Pyenv config
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv" 
+export PATH="$PYENV_ROOT/bin:$PATH" 
+eval "$(pyenv init --path)" 
 eval "$(pyenv init -)"
+#export PYENV_ROOT="$HOME/.pyenv"
+#export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 
 # virtualenvwrapper config
 export WORKON_HOME=~/.virtualenvs
@@ -97,6 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias tailf='tail -f'
 alias pyc='find . -name "*.pyc" -exec rm -f {} \;'
+alias ipython='python3 -m IPython'
 
 source /Users/gferrate/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -113,3 +122,5 @@ if [[ $#h -gt 0 ]]; then
 fi
 
 
+#export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+#export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
