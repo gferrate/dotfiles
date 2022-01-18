@@ -4,6 +4,9 @@ export PATH="/opt/homebrew/opt/grep/libexec/gnubin:$PATH"
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
+# Delete to begining of line
+bindkey \^U backward-kill-line
+
 
 # Pyenv config
 export PYENV_ROOT="$HOME/.pyenv" 
