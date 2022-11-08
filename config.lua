@@ -17,13 +17,20 @@ lvim.colorscheme = "lunar"
 -- lvim.use_icons = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = ","
+lvim.leader = "space"
 
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<CR>"
-lvim.keys.normal_mode["<leader><space>"] = ":nohlsearch<CR>"
+lvim.keys.normal_mode[",<leader>"] = ":nohlsearch<CR>"
 lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<CR>"
+
+-- Ruler
+vim.opt.colorcolumn = "80"
+
+
+-- In inert mode, if you press ctrl+N you will add a pudb breakpoint
+lvim.keys.insert_mode["<C-n>"] = "import pudb; pudb.set_trace()<esc>"
 
 
 -- unmap a default keymapping
@@ -135,27 +142,45 @@ lvim.builtin.treesitter.highlight.enable = true
 
 -- set a formatter, this will override the language server formatting capabilities (if it exists)
 
-local formatters = require "lvim.lsp.null-ls.formatters"
+local LINE_LENGTH = "79"
 
--- local formatters = require "lvim.lsp.null-ls.formatters"
+local pylint_extra_args = {
+  "--disable=C0111,C0209,C0103",
+  "--max-line-length", LINE_LENGTH
+}
+
+-- If env var DJANGO_SETTINGS_MODULE is present, activate the pylint_django plugin
+-- local django_settings_module = os.getenv("DJANGO_SETTINGS_MODULE")
+-- if django_settings_module then
+--   table.insert(pylint_extra_args, "--load-plugins=pylint_django")
+--   table.insert(pylint_extra_args, "--django-settings")
+--   table.insert(pylint_extra_args, django_settings_module)
+-- end
+
+local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "black", filetypes = { "python" }, extra_args = { "--line-width", "79", "--preview" } },
-  { command = "isort", filetypes = { "python" } },
+  { command = "black", filetypes = { "python" }, extra_args = { "--line-length", LINE_LENGTH, "--preview" } },
+  { command = "isort", filetypes = { "python" }, extra_args = { "--profile=black", "-l", LINE_LENGTH } },
   {
     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
     command = "prettier",
     ---@usage arguments to pass to the formatter
     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    extra_args = { "--print-with", "100" },
+    extra_args = { "--print-with", LINE_LENGTH },
     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    filetypes = { "typescript", "typescriptreact" },
+    filetypes = { "typescript", "typescriptreact", "vue" },
   },
 }
 
 -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
+
 -- linters.setup {
---   { command = "flake8", filetypes = { "python" } },
+--   {
+--     command = "pylint",
+--     filetypes = { "python" },
+--     extra_args = pylint_extra_args,
+--   },
 --   {
 --     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
 --     command = "shellcheck",
