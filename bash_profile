@@ -56,3 +56,5 @@ alias ls='ls -GFh'
 alias glog='git log --graph'
 # Created by `userpath` on 2019-06-05 13:15:34
 export PATH="$PATH:/Users/gferrate/.local/bin"
+
+export PATH="$HOME/.poetry/bin:$PATH"

@@ -8,6 +8,8 @@
 	<integer>0</integer>
 	<key>AlternateMouseScroll</key>
 	<true/>
+	<key>CloseBookmarksWindowAfterOpening</key>
+	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>88842079-6BF9-4290-9D17-D05AC8D8C112</string>
 	<key>DimBackgroundWindows</key>
@@ -203,7 +205,7 @@
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.1491314172744751</real>
+				<real>0.14910027384757996</real>
 				<key>Red Component</key>
 				<real>1</real>
 			</dict>
@@ -246,9 +248,9 @@
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.9268307089805603</real>
+				<real>0.92681378126144409</real>
 				<key>Red Component</key>
-				<real>0.70213186740875244</real>
+				<real>0.70214027166366577</real>
 			</dict>
 			<key>Cursor Text Color</key>
 			<dict>
@@ -732,11 +734,11 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.73423302173614502</real>
+				<real>0.73422712087631226</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.35916060209274292</real>
+				<real>0.35915297269821167</real>
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
@@ -749,7 +751,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCode-Regular 14</string>
+			<string>FiraCodeNerdFontComplete-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -817,7 +819,7 @@
 		</dict>
 	</array>
 	<key>OpenBookmark</key>
-	<false/>
+	<true/>
 	<key>PMPrintingExpandedStateForPrint2</key>
 	<false/>
 	<key>PointerActions</key>

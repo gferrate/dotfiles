@@ -20,7 +20,7 @@ eval "$(pyenv init -)"
 # virtualenvwrapper config
 export WORKON_HOME=~/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=~/.pyenv/versions/3.9.2/bin/python
-source .pyenv/versions/3.9.2/bin/virtualenvwrapper.sh
+source ~/.pyenv/versions/3.9.2/bin/virtualenvwrapper.sh
 
 # Openssl
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
@@ -113,6 +113,7 @@ source $ZSH/oh-my-zsh.sh
 alias tailf='tail -f'
 alias pyc='find . -name "*.pyc" -exec rm -f {} \;'
 alias ipython='python3 -m IPython'
+alias vi='lvim'
 
 #source /Users/gferrate/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /Users/gferrate/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
@@ -133,3 +134,15 @@ fi
 #export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 #export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#export PATH="$PATH:$(yarn global bin)"
+export PATH="/Users/gferrate/.nvm/versions/node/v16.14.0/bin/yarn:$PATH"
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=/Users/gferrate/.local/bin:$PATH
