@@ -1,0 +1,10 @@
+{
+    "datadog.telemetry.setup.enableTelemetry": "enabled",
+    "security.workspace.trust.untrustedFiles": "open",
+    "redhat.telemetry.enabled": false,
+    "datadog.staticAnalysis.notification.suppressOnboarding": true,
+    "vim.hlsearch": true,
+    "gopls": {
+        "ui.semanticTokens": true
+    }
+}
