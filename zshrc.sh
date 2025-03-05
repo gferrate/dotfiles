@@ -21,10 +21,17 @@ create_pr() {
   git stash pop
   gaa
   gcam $PR_NAME
-  gh pr create -t $PR_NAME --draft
+  gh pr create -t $PR_NAME
   PR_URL=$(gh pr view --json url -q .url)
+  if [ -z "${PR_URL}" ]; then
+    echo "PR URL not found"
+    return
+  fi
   echo $PR_URL
   TO_COPY=":pr: [$PR_NAME]($PR_URL)"
   echo $TO_COPY | pbcopy
   echo "PR link copied to clipboard with Slack formatting"
 }
+
+
+alias ss="source ~/.zshrc"
