@@ -49,6 +49,22 @@
                 "<C-w>",
                 "l"
             ]
+        },
+        {
+            "before": [
+                "<tab>"
+            ],
+            "commands": [
+                ":tabnext"
+            ]
+        },
+        {
+            "before": [
+                "<S-tab>"
+            ],
+            "commands": [
+                ":tabprevious"
+            ]
         }
     ]
 }
