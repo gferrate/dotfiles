@@ -25,7 +25,16 @@ setup_zsh() {
 setup_vscode() {
   echo "Setting up VS Code configuration..."
 
-  VSCODE_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
+  # Check if running on macOS
+  if [[ "$(uname)" == "Darwin" ]]; then
+    VSCODE_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
+  elif [[ "$(uname)" == "Linux" ]]; then
+    VSCODE_SETTINGS_DIR="$HOME/.config/Code/User"
+  else
+    echo "❌ Unsupported operating system. VS Code setup skipped."
+    return 1
+  fi
+
   VSCODE_SETTINGS_FILE="$VSCODE_SETTINGS_DIR/settings.json"
   VSCODE_EXTENSIONS_FILE="$VSCODE_SETTINGS_DIR/extensions.json"
 
@@ -57,8 +66,33 @@ setup_vscode() {
   echo "✅ VS Code extensions file configured successfully!"
 }
 
+setup_brew() {
+  # Check if running on macOS
+  if [[ "$(uname)" != "Darwin" ]]; then
+    echo "Not running on macOS, skipping Homebrew setup."
+    return 0
+  fi
+
+  echo "Setting up Homebrew packages..."
+
+  # Check if Homebrew is installed
+  if ! command -v brew &>/dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  else
+    echo "Homebrew is already installed."
+  fi
+
+  # Install packages
+  echo "Installing required packages..."
+  brew install git gh
+
+  echo "✅ Homebrew setup completed successfully!"
+}
+
 all() {
   echo "Running all setup functions..."
+  setup_brew
   setup_zsh
   setup_vscode
   echo "✅ Setup completed successfully!"
