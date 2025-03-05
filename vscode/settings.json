@@ -6,5 +6,49 @@
     "vim.hlsearch": true,
     "gopls": {
         "ui.semanticTokens": true
-    }
+    },
+    "editor.minimap.enabled": false,
+    "recommendations": [
+        "vscodevim.vim",
+        "golang.go",
+        "github.copilot"
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<C-h>"
+            ],
+            "after": [
+                "<C-w>",
+                "h"
+            ]
+        },
+        {
+            "before": [
+                "<C-j>"
+            ],
+            "after": [
+                "<C-w>",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "<C-k>"
+            ],
+            "after": [
+                "<C-w>",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "<C-l>"
+            ],
+            "after": [
+                "<C-w>",
+                "l"
+            ]
+        }
+    ]
 }
