@@ -8,11 +8,15 @@
         "ui.semanticTokens": true
     },
     "editor.minimap.enabled": false,
+    "workbench.editor.showTabs": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
     "recommendations": [
         "vscodevim.vim",
         "golang.go",
         "github.copilot"
     ],
+    "vim.leader": ",",
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
@@ -64,6 +68,15 @@
             ],
             "commands": [
                 ":tabprevious"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<space>"
+            ],
+            "commands": [
+                ":nohl"
             ]
         }
     ]
