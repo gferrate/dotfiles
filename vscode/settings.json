@@ -11,10 +11,9 @@
     "workbench.editor.showTabs": false,
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
-    "recommendations": [
-        "vscodevim.vim",
-        "golang.go",
-        "github.copilot"
+    "editor.rulers": [
+        80,
+        120
     ],
     "vim.leader": ",",
     "vim.normalModeKeyBindingsNonRecursive": [
@@ -77,6 +76,44 @@
             ],
             "commands": [
                 ":nohl"
+            ]
+        }
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "after": [
+                "i",
+                "m",
+                "p",
+                "o",
+                "r",
+                "t",
+                " ",
+                "p",
+                "u",
+                "d",
+                "b",
+                ";",
+                " ",
+                "p",
+                "u",
+                "d",
+                "b",
+                ".",
+                "s",
+                "e",
+                "t",
+                "_",
+                "t",
+                "r",
+                "a",
+                "c",
+                "e",
+                "(",
+                ")"
             ]
         }
     ]
