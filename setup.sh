@@ -45,10 +45,9 @@ setup_vscode() {
   if [ -f "$VSCODE_SETTINGS_FILE" ]; then
     echo "Backing up existing VS Code settings..."
     BACKUP_TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-    cp "$VSCODE_SETTINGS_FILE" "$VSCODE_SETTINGS_FILE.backup_$BACKUP_TIMESTAMP"
-    cp "$VSCODE_SETTINGS_FILE" "$PWD/vscode/backups/settings.json.backup_$BACKUP_TIMESTAMP"
-    echo "✅ Settings backed up to $VSCODE_SETTINGS_FILE.backup_$BACKUP_TIMESTAMP"
-    echo "✅ Settings also backed up to $PWD/vscode/backups/settings.json.backup_$BACKUP_TIMESTAMP"
+    BACKUP_FILE="$PWD/vscode/backups/settings.$BACKUP_TIMESTAMP.backup.json"
+    cp "$VSCODE_SETTINGS_FILE" "$BACKUP_FILE"
+    echo "✅ Settings also backed up to $BACKUP_FILE"
   else
     echo "Creating new VS Code settings file..."
     touch "$VSCODE_SETTINGS_FILE"
@@ -63,7 +62,7 @@ setup_vscode() {
   cp "$PWD/vscode/extensions.json" "$VSCODE_EXTENSIONS_FILE"
 
   echo "✅ VS Code settings configured successfully!"
-  echo "✅ VS Code extensions file configured successfully!"
+  echo "✅ VS Code extensions file configured successfully!\n\n"
 }
 
 setup_brew() {
@@ -83,15 +82,22 @@ setup_brew() {
     echo "Homebrew is already installed."
   fi
 
-  # Install packages
-  echo "Installing required packages..."
-  brew install git gh
+  # Define array of packages to install
+  PACKAGES=("git" "gh")
 
-  echo "✅ Homebrew setup completed successfully!"
+  # Install packages one by one
+  echo "Installing required packages..."
+  for package in "${PACKAGES[@]}"; do
+    echo "Installing $package..."
+    brew install "$package"
+    echo "✅ $package installed successfully!\n"
+  done
+
+  echo "✅ Homebrew setup completed successfully!\n"
 }
 
 all() {
-  echo "Running all setup functions..."
+  echo "Running all setup functions...\n"
   setup_brew
   setup_zsh
   setup_vscode
