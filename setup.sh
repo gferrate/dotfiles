@@ -83,7 +83,7 @@ setup_brew() {
   fi
 
   # Define array of packages to install
-  PACKAGES=("git" "gh")
+  PACKAGES=("git" "gh" "neovim" "zsh" "zsh-completions")
 
   # Install packages one by one
   echo "Installing required packages..."
