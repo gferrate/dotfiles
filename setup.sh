@@ -27,6 +27,7 @@ setup_vscode() {
 
   VSCODE_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
   VSCODE_SETTINGS_FILE="$VSCODE_SETTINGS_DIR/settings.json"
+  VSCODE_EXTENSIONS_FILE="$VSCODE_SETTINGS_DIR/extensions.json"
 
   mkdir -p "$VSCODE_SETTINGS_DIR"
   mkdir -p "$PWD/vscode/backups"
@@ -48,7 +49,12 @@ setup_vscode() {
   echo "Applying custom VS Code settings..."
   cp "$PWD/vscode/settings.json" "$VSCODE_SETTINGS_FILE"
 
+  # Copy the extensions.json file
+  echo "Applying VS Code extensions recommendations..."
+  cp "$PWD/vscode/extensions.json" "$VSCODE_EXTENSIONS_FILE"
+
   echo "✅ VS Code settings configured successfully!"
+  echo "✅ VS Code extensions file configured successfully!"
 }
 
 all() {
