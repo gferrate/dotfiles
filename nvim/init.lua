@@ -35,3 +35,6 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- Important: This will prevent the default copy to clipboard behavior
+vim.opt.clipboard = ""
