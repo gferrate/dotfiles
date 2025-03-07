@@ -1,5 +1,8 @@
 set -e
 
+BACKUPS_DIR="$PWD/backups"
+mkdir -p "$BACKUPS_DIR"
+
 setup_zsh() {
   echo "Setting up ZSH configuration..."
   ZSHRC="$HOME/.zshrc"
@@ -39,13 +42,13 @@ setup_vscode() {
   VSCODE_EXTENSIONS_FILE="$VSCODE_SETTINGS_DIR/extensions.json"
 
   mkdir -p "$VSCODE_SETTINGS_DIR"
-  mkdir -p "$PWD/vscode/backups"
+  mkdir -p "$BACKUPS_DIR/vscode"
 
   # Create settings file if it doesn't exist or backup existing
   if [ -f "$VSCODE_SETTINGS_FILE" ]; then
     echo "Backing up existing VS Code settings..."
     BACKUP_TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-    BACKUP_FILE="$PWD/vscode/backups/settings.$BACKUP_TIMESTAMP.backup.json"
+    BACKUP_FILE="$BACKUPS_DIR/vscode/settings.$BACKUP_TIMESTAMP.json"
     cp "$VSCODE_SETTINGS_FILE" "$BACKUP_FILE"
     echo "✅ Settings also backed up to $BACKUP_FILE"
   else
@@ -101,11 +104,13 @@ setup_brew() {
 setup_vimchad() {
   COMPUTER_NVIM_DIR="$HOME/.config/nvim"
 
+  mkdir -p "$BACKUPS_DIR/nvim"
+
   # Backup existing Neovim configuration
   if [ -d $COMPUTER_NVIM_DIR ]; then
     echo "Backing up existing Neovim configuration..."
     BACKUP_TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-    BACKUP_DIR="$PWD/nvim/backups/nvim.$BACKUP_TIMESTAMP.backup"
+    BACKUP_DIR="$BACKUPS_DIR/nvim/nvim.$BACKUP_TIMESTAMP.backup"
     mkdir -p "$BACKUP_DIR"
     cp -r $COMPUTER_NVIM_DIR/* "$BACKUP_DIR"
     echo "✅ Backup created at $BACKUP_DIR"
