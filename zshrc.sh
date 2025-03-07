@@ -15,6 +15,10 @@ create_pr() {
   BRANCH_NAME="$USER_NAME/$SLUGGED_PR"
 
   MASTER=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+  if [ -z "${MASTER}" ]; then
+    echo "Master branch not found"
+    return
+  fi
   git stash
   gco $MASTER
   gcb $BRANCH_NAME
@@ -33,5 +37,7 @@ create_pr() {
   echo "PR link copied to clipboard with Slack formatting"
 }
 
-
 alias ss="source ~/.zshrc"
+
+# For the autojump plugin
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
