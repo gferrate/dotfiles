@@ -83,7 +83,7 @@ setup_brew() {
   fi
 
   # Define array of packages to install
-  PACKAGES=("git" "gh" "neovim" "zsh" "zsh-completions" "autojump")
+  PACKAGES=("git" "gh" "neovim" "zsh" "zsh-completions" "autojump" "ripgrep")
 
   # Install packages one by one
   echo "Installing required packages..."
@@ -96,11 +96,34 @@ setup_brew() {
   echo "✅ Homebrew setup completed successfully!\n"
 }
 
+setup_vimchad() {
+  COMPUTER_NVIM_DIR="$HOME/.config/nvim"
+
+  # Backup existing Neovim configuration
+  if [ -d $COMPUTER_NVIM_DIR ]; then
+    echo "Backing up existing Neovim configuration..."
+    BACKUP_TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+    BACKUP_DIR="$PWD/nvim/backups/nvim.$BACKUP_TIMESTAMP.backup"
+    mkdir -p "$BACKUP_DIR"
+    cp -r $COMPUTER_NVIM_DIR/* "$BACKUP_DIR"
+    echo "✅ Backup created at $BACKUP_DIR"
+
+    echo "Removing existing Neovim configuration..."
+    rm -rf $COMPUTER_NVIM_DIR
+  fi
+
+  # mkdir -p $COMPUTER_NVIM_DIR
+  ln -s $PWD/nvim/ "$HOME/.config"
+
+  # nvim --headless +MasonInstallAll +qall
+}
+
 all() {
   echo "Running all setup functions...\n"
   setup_brew
   setup_zsh
   setup_vscode
+  setup_vimchad
   echo "✅ Setup completed successfully!"
 }
 

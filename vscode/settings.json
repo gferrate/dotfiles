@@ -8,7 +8,7 @@
         "ui.semanticTokens": true
     },
     "editor.minimap.enabled": false,
-    "workbench.editor.showTabs": false,
+    "workbench.editor.showTabs": true,
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "editor.rulers": [

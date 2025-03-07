@@ -38,6 +38,8 @@ create_pr() {
 }
 
 alias ss="source ~/.zshrc"
+alias vi="nvim"
+alias vim="nvim"
 
 # For the autojump plugin
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
