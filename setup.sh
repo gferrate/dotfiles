@@ -148,11 +148,8 @@ install_jetbrains_nerd_font() {
       echo "fc-cache not found, installing fontconfig..."
       if [[ "$(uname)" == "Darwin" ]]; then
         brew install fontconfig
-      elif [[ "$(uname)" == "Linux" ]]; then
-        sudo apt-get install -y fontconfig
       else
-        echo "❌ Unsupported operating system. Font cache update skipped."
-        return 1
+        sudo apt-get install -y fontconfig
       fi
     fi
 
