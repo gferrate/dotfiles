@@ -56,6 +56,8 @@ setup_vscode() {
   # Copy your custom settings
   echo "Applying custom VS Code settings..."
   cp "$PWD/vscode/settings.json" "$VSCODE_SETTINGS_FILE"
+  # Add JetBrains Mono Nerd Font to VS Code settings
+  jq '.["editor.fontFamily"] = "JetBrainsMono Nerd Font"' "$VSCODE_SETTINGS_FILE" >tmp.$$.json && mv tmp.$$.json "$VSCODE_SETTINGS_FILE"
 
   # Copy the extensions.json file
   echo "Applying VS Code extensions recommendations..."
@@ -118,12 +120,51 @@ setup_vimchad() {
   # nvim --headless +MasonInstallAll +qall
 }
 
+install_jetbrains_nerd_font() {
+  echo "Installing JetBrains Mono Nerd Font..."
+  FONT_DIR="$HOME/.local/share/fonts"
+  mkdir -p "$FONT_DIR"
+
+  # Check if JetBrainsMono directory already exists
+  if [ -d "$FONT_DIR/JetBrainsMono" ]; then
+    echo "✅ JetBrains Mono Nerd Font already installed. Skipping download."
+  else
+    # Download and install the font
+    cd "$FONT_DIR"
+    echo "Downloading JetBrains Mono Nerd Font..."
+    curl -fLo "JetBrainsMono.zip" https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
+    echo "Extracting font files..."
+    unzip -q JetBrainsMono.zip -d JetBrainsMono
+    rm JetBrainsMono.zip
+    echo "Font files extracted successfully."
+
+    # Check if fc-cache is installed
+    if ! command -v fc-cache &>/dev/null; then
+      echo "fc-cache not found, installing fontconfig..."
+      if [[ "$(uname)" == "Darwin" ]]; then
+        brew install fontconfig
+      elif [[ "$(uname)" == "Linux" ]]; then
+        sudo apt-get install -y fontconfig
+      else
+        echo "❌ Unsupported operating system. Font cache update skipped."
+        return 1
+      fi
+    fi
+
+    # Update font cache
+    echo "Updating font cache..."
+    fc-cache -fv
+    echo "✅ JetBrains Mono Nerd Font installation completed successfully!"
+  fi
+}
+
 all() {
   echo "Running all setup functions...\n"
   setup_brew
   setup_zsh
   setup_vscode
   setup_vimchad
+  install_jetbrains_nerd_font
   echo "✅ Setup completed successfully!"
 }
 
