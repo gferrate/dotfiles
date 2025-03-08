@@ -122,5 +122,6 @@
         }
     ],
     "editor.fontFamily": "JetBrainsMono Nerd Font",
-    "editor.fontLigatures": true
+    "editor.fontLigatures": true,
+    "explorer.confirmDelete": false
 }

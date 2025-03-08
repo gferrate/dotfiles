@@ -39,7 +39,6 @@ setup_vscode() {
   fi
 
   VSCODE_SETTINGS_FILE="$VSCODE_SETTINGS_DIR/settings.json"
-  VSCODE_EXTENSIONS_FILE="$VSCODE_SETTINGS_DIR/extensions.json"
 
   mkdir -p "$VSCODE_SETTINGS_DIR"
   mkdir -p "$BACKUPS_DIR/vscode"
@@ -62,9 +61,12 @@ setup_vscode() {
   # Add JetBrains Mono Nerd Font to VS Code settings
   jq '.["editor.fontFamily"] = "JetBrainsMono Nerd Font"' "$VSCODE_SETTINGS_FILE" >tmp.$$.json && mv tmp.$$.json "$VSCODE_SETTINGS_FILE"
 
-  # Copy the extensions.json file
   echo "Applying VS Code extensions recommendations..."
-  cp "$PWD/vscode/extensions.json" "$VSCODE_EXTENSIONS_FILE"
+  EXTENSIONS_FILE="$PWD/vscode/extensions.txt"
+  while read -r line; do
+    echo "Installing $line..."
+    code --install-extension "$line"
+  done <"$EXTENSIONS_FILE"
 
   echo "✅ VS Code settings configured successfully!"
   echo "✅ VS Code extensions file configured successfully!\n\n"
