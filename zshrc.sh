@@ -37,9 +37,16 @@ create_pr() {
   echo "PR link copied to clipboard with Slack formatting"
 }
 
+# Alias
 alias ss="source ~/.zshrc"
 alias vi="nvim"
 alias vim="nvim"
 
-# For the autojump plugin
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+# Exports
+export PATH=/opt/homebrew/bin:$PATH
+
+# Oh my zsh config
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh

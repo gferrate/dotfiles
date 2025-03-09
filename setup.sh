@@ -3,25 +3,36 @@ set -e
 BACKUPS_DIR="$PWD/backups"
 mkdir -p "$BACKUPS_DIR"
 
+setup_oh_my_zsh() {
+  if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+    echo "✅ Oh My Zsh is already installed. Skipping installation."
+  else
+    echo "Installing Oh My Zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
+    echo "✅ Oh My Zsh installed successfully!"
+  fi
+}
+
 setup_zsh() {
   echo "Setting up ZSH configuration..."
-  ZSHRC="$HOME/.zshrc"
-  echo "ZSH config file: $ZSHRC"
+  COMPUTER_ZSHRC="$HOME/.zshrc"
+  DOTFILES_ZSHRC="$PWD/zshrc.sh"
+  echo "ZSH config file: $COMPUTER_ZSHRC"
 
   echo "Creating dotfiles directory if it doesn't exist..."
 
   # Create the file if it doesn't exist
-  touch "$ZSHRC"
+  touch "$COMPUTER_ZSHRC"
 
   # Check if the source line already exists in .zshrc
-  if grep -q "source $PWD/zshrc.sh" "$ZSHRC"; then
-    echo "✅ Source command already exists in $ZSHRC"
+  if grep -q "source $DOTFILES_ZSHRC" "$COMPUTER_ZSHRC"; then
+    echo "✅ Source command already exists in $COMPUTER_ZSHRC"
   else
-    echo "Adding source command to $ZSHRC..."
-    echo "" >>"$ZSHRC"
-    echo "# Added by dotfiles setup script" >>"$ZSHRC"
-    echo "source $PWD/zshrc.sh" >>"$ZSHRC"
-    echo "✅ Added custom commands to $ZSHRC"
+    echo "Adding source command to $COMPUTER_ZSHRC..."
+    echo "" >>"$COMPUTER_ZSHRC"
+    echo "# Added by dotfiles setup script" >>"$COMPUTER_ZSHRC"
+    echo "source $DOTFILES_ZSHRC" >>"$COMPUTER_ZSHRC"
+    echo "✅ Added custom commands to $COMPUTER_ZSHRC"
   fi
 }
 
@@ -165,6 +176,7 @@ install_jetbrains_nerd_font() {
 all() {
   echo "Running all setup functions...\n"
   setup_brew
+  setup_oh_my_zsh
   setup_zsh
   setup_vscode
   setup_vimchad
