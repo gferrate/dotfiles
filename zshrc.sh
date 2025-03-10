@@ -11,12 +11,20 @@ create_pr() {
 
   USER_NAME="gferrate"
   PR_NAME="$1"
+  JIRA_ID="$2"
 
   if [ -z "${PR_NAME}" ]; then
     echo "PR Comment missing"
     # Restore previous options before returning
     eval "$PREV_OPTS"
     return 1
+  fi
+
+  # Format the PR title with JIRA ID if provided
+  if [ -n "${JIRA_ID}" ]; then
+    PR_TITLE="[${JIRA_ID}] ${PR_NAME}"
+  else
+    PR_TITLE="${PR_NAME}"
   fi
 
   SLUGGED_PR=$(slugify $PR_NAME)
@@ -34,8 +42,8 @@ create_pr() {
   gcb $BRANCH_NAME
   git stash pop
   gaa
-  gcam $PR_NAME
-  gh pr create -t $PR_NAME
+  gcam "$PR_TITLE"
+  gh pr create -t "$PR_TITLE"
   PR_URL=$(gh pr view --json url -q .url)
   if [ -z "${PR_URL}" ]; then
     echo "PR URL not found"
@@ -44,7 +52,7 @@ create_pr() {
     return 1
   fi
   echo $PR_URL
-  TO_COPY=":pr: [$PR_NAME]($PR_URL)"
+  TO_COPY=":pr: [$PR_TITLE]($PR_URL)"
 
   if command -v pbcopy >/dev/null 2>&1; then
     echo $TO_COPY | pbcopy # Copy to clipboard
