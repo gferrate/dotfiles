@@ -3,6 +3,10 @@ set -e
 BACKUPS_DIR="$PWD/backups"
 mkdir -p "$BACKUPS_DIR"
 
+is_macos() {
+  [[ "$(uname)" == "Darwin" ]]
+}
+
 setup_oh_my_zsh() {
   if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
     echo "✅ Oh My Zsh is already installed. Skipping installation."
@@ -34,13 +38,21 @@ setup_zsh() {
     echo "source $DOTFILES_ZSHRC" >>"$COMPUTER_ZSHRC"
     echo "✅ Added custom commands to $COMPUTER_ZSHRC"
   fi
+
+  if is_macos; then
+    # Remove sticky notes from the dock
+    defaults write com.apple.dock wvous-br-corner -int 0
+    defaults write com.apple.dock wvous-br-modifier -int 0
+    killall Dock # Restart the Dock
+    echo "✅ Removed sticky notes from the dock"
+  fi
 }
 
 setup_vscode() {
   echo "Setting up VS Code configuration..."
 
   # Check if running on macOS
-  if [[ "$(uname)" == "Darwin" ]]; then
+  if is_macos; then
     VSCODE_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
   elif [[ "$(uname)" == "Linux" ]]; then
     VSCODE_SETTINGS_DIR="$HOME/.config/Code/User"
