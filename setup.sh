@@ -1,3 +1,4 @@
+#!/bin/zsh
 set -e
 
 BACKUPS_DIR="$PWD/backups"
@@ -95,9 +96,9 @@ setup_vscode() {
   echo "✅ VS Code extensions file configured successfully!\n\n"
 }
 
-setup_brew() {
+install_brew() {
   # Check if running on macOS
-  if [[ "$(uname)" != "Darwin" ]]; then
+  if !is_macos; then
     echo "Not running on macOS, skipping Homebrew setup."
     return 0
   fi
@@ -113,7 +114,7 @@ setup_brew() {
   fi
 
   # Define array of packages to install
-  PACKAGES=("git" "gh" "neovim" "zsh" "zsh-completions" "ripgrep")
+  PACKAGES=("git" "gh" "neovim" "zsh" "zsh-completions" "ripgrep" "autojump")
 
   # Install packages one by one
   echo "Installing required packages..."
@@ -187,7 +188,7 @@ install_jetbrains_nerd_font() {
 
 all() {
   echo "Running all setup functions...\n"
-  setup_brew
+  install_brew
   setup_oh_my_zsh
   setup_zsh
   setup_vscode
