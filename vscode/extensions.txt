@@ -9,3 +9,4 @@ ms-vscode.remote-explorer
 streetsidesoftware.code-spell-checker
 vscodevim.vim
 ziyasal.vscode-open-in-github
+bradlc.vscode-tailwindcss
