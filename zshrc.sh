@@ -5,10 +5,6 @@ slugify() {
 }
 
 create_pr() {
-  # Save current error handling setting and enable strict mode
-  local PREV_OPTS=$(set +o)
-  set -e
-
   USER_NAME="gferrate"
   PR_NAME="$1"
   JIRA_ID="$2"
@@ -16,7 +12,6 @@ create_pr() {
   if [ -z "${PR_NAME}" ]; then
     echo "PR Comment missing"
     # Restore previous options before returning
-    eval "$PREV_OPTS"
     return 1
   fi
 
@@ -34,7 +29,6 @@ create_pr() {
   if [ -z "${MASTER}" ]; then
     echo "Master branch not found"
     # Restore previous options before returning
-    eval "$PREV_OPTS"
     return 1
   fi
   git stash
@@ -48,7 +42,6 @@ create_pr() {
   if [ -z "${PR_URL}" ]; then
     echo "PR URL not found"
     # Restore previous options before returning
-    eval "$PREV_OPTS"
     return 1
   fi
   echo $PR_URL
@@ -63,7 +56,6 @@ create_pr() {
   fi
 
   # Restore previous options before exiting function
-  eval "$PREV_OPTS"
 }
 
 # Alias
