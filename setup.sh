@@ -12,6 +12,15 @@ setup_oh_my_zsh() {
   if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
     echo "✅ Oh My Zsh is already installed. Skipping installation."
   else
+    COMPUTER_ZSHRC="$HOME/.zshrc"
+    # Create backup of existing .zshrc if it exists
+    if [ -f "$COMPUTER_ZSHRC" ]; then
+      BACKUP_FILE="$COMPUTER_ZSHRC.before_ohmyzsh_backup.$(date +%Y%m%d_%H%M%S)"
+      echo "Creating backup of existing .zshrc at $BACKUP_FILE..."
+      cp "$COMPUTER_ZSHRC" "$BACKUP_FILE"
+      echo "✅ Created backup of existing .zshrc"
+    fi
+
     echo "Installing Oh My Zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
     echo "✅ Oh My Zsh installed successfully!"
@@ -23,6 +32,14 @@ setup_zsh() {
   COMPUTER_ZSHRC="$HOME/.zshrc"
   DOTFILES_ZSHRC="$PWD/zshrc.sh"
   echo "ZSH config file: $COMPUTER_ZSHRC"
+
+  # Create backup of existing .zshrc if it exists
+  if [ -f "$COMPUTER_ZSHRC" ]; then
+    BACKUP_FILE="$COMPUTER_ZSHRC.backup.$(date +%Y%m%d_%H%M%S)"
+    echo "Creating backup of existing .zshrc at $BACKUP_FILE..."
+    cp "$COMPUTER_ZSHRC" "$BACKUP_FILE"
+    echo "✅ Created backup of existing .zshrc"
+  fi
 
   echo "Creating dotfiles directory if it doesn't exist..."
 
