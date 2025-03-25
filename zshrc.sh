@@ -32,11 +32,11 @@ create_pr() {
     return 1
   fi
   git stash
-  gco $MASTER
-  gcb $BRANCH_NAME
+  git checkout $MASTER
+  git checkout -b $BRANCH_NAME
   git stash pop
-  gaa
-  gcam "$PR_TITLE"
+  git add -A
+  git commit -am "$PR_TITLE"
   gh pr create -t "$PR_TITLE"
   PR_URL=$(gh pr view --json url -q .url)
   if [ -z "${PR_URL}" ]; then
