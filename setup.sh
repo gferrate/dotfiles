@@ -114,18 +114,21 @@ setup_vscode() {
 }
 
 install_brew() {
-  # Check if running on macOS
-  if !is_macos; then
-    echo "Not running on macOS, skipping Homebrew setup."
-    return 0
-  fi
-
   echo "Setting up Homebrew packages..."
 
   # Check if Homebrew is installed
   if ! command -v brew &>/dev/null; then
     echo "Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if is_macos; then
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    else
+      # Linux installation
+      NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+      # Add Homebrew to PATH for Linux
+      echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>"$HOME/.zshrc"
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
   else
     echo "Homebrew is already installed."
   fi
