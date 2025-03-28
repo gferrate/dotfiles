@@ -148,6 +148,7 @@ install_brew() {
 }
 
 setup_vimchad() {
+  mkdir -p "$HOME/.config"
   COMPUTER_NVIM_DIR="$HOME/.config/nvim"
 
   mkdir -p "$BACKUPS_DIR/nvim"
@@ -165,7 +166,6 @@ setup_vimchad() {
     rm -rf $COMPUTER_NVIM_DIR
   fi
 
-  # mkdir -p $COMPUTER_NVIM_DIR
   ln -s $PWD/nvim/ "$HOME/.config"
 
   # nvim --headless +MasonInstallAll +qall
