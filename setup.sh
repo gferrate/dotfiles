@@ -67,6 +67,12 @@ setup_zsh() {
 }
 
 setup_vscode() {
+  # Check if code command is available
+  if ! command -v code &>/dev/null; then
+    echo "❌ VS Code command not found. VS Code setup skipped."
+    return 1
+  fi
+
   echo "Setting up VS Code configuration..."
 
   # Check if running on macOS
