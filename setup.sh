@@ -121,6 +121,7 @@ setup_vscode() {
 
 install_brew() {
   echo "Setting up Homebrew packages..."
+  export HOMEBREW_NO_AUTO_UPDATE=1
 
   # Check if Homebrew is installed
   if ! command -v brew &>/dev/null; then
