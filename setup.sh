@@ -70,7 +70,8 @@ setup_vscode() {
   # Check if code command is available
   if ! command -v code &>/dev/null; then
     echo "❌ VS Code command not found. VS Code setup skipped."
-    return 1
+    echo ""
+    return
   fi
 
   echo "Setting up VS Code configuration..."
@@ -82,7 +83,8 @@ setup_vscode() {
     VSCODE_SETTINGS_DIR="$HOME/.config/Code/User"
   else
     echo "❌ Unsupported operating system. VS Code setup skipped."
-    return 1
+    echo ""
+    return
   fi
 
   VSCODE_SETTINGS_FILE="$VSCODE_SETTINGS_DIR/settings.json"
@@ -135,6 +137,8 @@ install_brew() {
       # Add Homebrew to PATH for Linux
       echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >>"$HOME/.zshrc"
       eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+      source "$HOME/.zshrc"
     fi
   else
     echo "Homebrew is already installed."
