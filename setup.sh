@@ -66,59 +66,57 @@ setup_zsh() {
   fi
 }
 
-setup_vscode() {
-  # Check if code command is available
-  if ! command -v code &>/dev/null; then
-    echo "❌ VS Code command not found. VS Code setup skipped."
+setup_cursor() {
+  if ! command -v cursor &>/dev/null; then
+    echo "❌ Cursor command not found. Cursor setup skipped."
     echo ""
     return
   fi
-
-  echo "Setting up VS Code configuration..."
 
   # Check if running on macOS
   if is_macos; then
-    VSCODE_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
+    CURSOR_SETTINGS_DIR="$HOME/Library/Application Support/Cursor/User"
   elif [[ "$(uname)" == "Linux" ]]; then
-    VSCODE_SETTINGS_DIR="$HOME/.config/Code/User"
+    CURSOR_SETTINGS_DIR="$HOME/.config/Cursor/User"
   else
-    echo "❌ Unsupported operating system. VS Code setup skipped."
+    echo "❌ Unsupported operating system. Cursor setup skipped."
     echo ""
     return
   fi
 
-  VSCODE_SETTINGS_FILE="$VSCODE_SETTINGS_DIR/settings.json"
+  CURSOR_SETTINGS_FILE="$CURSOR_SETTINGS_DIR/settings.json"
 
-  mkdir -p "$VSCODE_SETTINGS_DIR"
-  mkdir -p "$BACKUPS_DIR/vscode"
+  mkdir -p "$CURSOR_SETTINGS_DIR"
+  mkdir -p "$BACKUPS_DIR/cursor"
 
   # Create settings file if it doesn't exist or backup existing
-  if [ -f "$VSCODE_SETTINGS_FILE" ]; then
-    echo "Backing up existing VS Code settings..."
+  if [ -f "$CURSOR_SETTINGS_FILE" ]; then
+    echo "Backing up existing Cursor settings..."
     BACKUP_TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-    BACKUP_FILE="$BACKUPS_DIR/vscode/settings.$BACKUP_TIMESTAMP.json"
-    cp "$VSCODE_SETTINGS_FILE" "$BACKUP_FILE"
+    BACKUP_FILE="$BACKUPS_DIR/cursor/settings.$BACKUP_TIMESTAMP.json"
+    cp "$CURSOR_SETTINGS_FILE" "$BACKUP_FILE"
     echo "✅ Settings also backed up to $BACKUP_FILE"
   else
-    echo "Creating new VS Code settings file..."
-    touch "$VSCODE_SETTINGS_FILE"
+    echo "Creating new Cursor settings file..."
+    touch "$CURSOR_SETTINGS_FILE"
   fi
 
   # Copy your custom settings
-  echo "Applying custom VS Code settings..."
-  cp "$PWD/vscode/settings.json" "$VSCODE_SETTINGS_FILE"
-  # Add JetBrains Mono Nerd Font to VS Code settings
-  jq '.["editor.fontFamily"] = "JetBrainsMono Nerd Font"' "$VSCODE_SETTINGS_FILE" >tmp.$$.json && mv tmp.$$.json "$VSCODE_SETTINGS_FILE"
+  echo "Applying custom Cursor settings..."
+  cp "$PWD/cursor/settings.json" "$CURSOR_SETTINGS_FILE"
+  # Add JetBrains Mono Nerd Font to Cursor settings
+  jq '.["editor.fontFamily"] = "JetBrainsMono Nerd Font"' "$CURSOR_SETTINGS_FILE" >tmp.$$.json && mv tmp.$$.json "$CURSOR_SETTINGS_FILE"
 
   echo "Applying VS Code extensions recommendations..."
-  EXTENSIONS_FILE="$PWD/vscode/extensions.txt"
+  EXTENSIONS_FILE="$PWD/cursor/extensions.txt"
   while read -r line; do
     echo "Installing $line..."
-    code --install-extension "$line"
+    if ! cursor --install-extension "$line"; then
+      echo "⚠️ Failed to install extension: $line"
+    fi
   done <"$EXTENSIONS_FILE"
 
-  echo "✅ VS Code settings configured successfully!"
-  echo "✅ VS Code extensions file configured successfully!\n\n"
+  echo "✅ Cursor settings configured successfully!\n\n"
 }
 
 install_brew() {
@@ -219,10 +217,10 @@ install_jetbrains_nerd_font() {
 
 all() {
   echo "Running all setup functions...\n"
-  install_brew
-  setup_oh_my_zsh
-  setup_zsh
-  setup_vscode
+  # install_brew
+  # setup_oh_my_zsh
+  # setup_zsh
+  # setup_cursor
   setup_vimchad
   install_jetbrains_nerd_font
   echo "✅ Setup completed successfully!"

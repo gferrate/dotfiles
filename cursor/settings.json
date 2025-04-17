@@ -10,6 +10,7 @@
     "editor.minimap.enabled": false,
     "workbench.editor.showTabs": true,
     "workbench.editor.enablePreview": false,
+    "extensions.verifySignature": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "editor.rulers": [
         80,
