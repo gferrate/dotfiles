@@ -116,6 +116,9 @@ setup_cursor() {
     fi
   done <"$EXTENSIONS_FILE"
 
+  echo "Setting up key repetition config..."
+  defaults write -g ApplePressAndHoldEnabled -bool false
+
   echo "✅ Cursor settings configured successfully!\n\n"
 }
 
