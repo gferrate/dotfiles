@@ -33,6 +33,12 @@ setup_zsh() {
   DOTFILES_ZSHRC="$PWD/zshrc.sh"
   echo "ZSH config file: $COMPUTER_ZSHRC"
 
+  # Install zsh-vi-mode
+  ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+  mkdir -p "$ZSH_CUSTOM/plugins"
+  git clone https://github.com/jeffreytse/zsh-vi-mode \
+    $ZSH_CUSTOM/plugins/zsh-vi-mode
+
   # Create backup of existing .zshrc if it exists
   if [ -f "$COMPUTER_ZSHRC" ]; then
     BACKUP_FILE="$COMPUTER_ZSHRC.backup.$(date +%Y%m%d_%H%M%S)"
@@ -218,9 +224,25 @@ install_jetbrains_nerd_font() {
   fi
 }
 
+install_ghostty() {
+  if is_macos; then
+    echo "Installing Ghostty..."
+    brew install --cask ghostty
+    echo "✅ Ghostty installed successfully!"
+
+    # Set Ghostty to open on login
+    GHOSTTY_CONFIG_DIR="$HOME/Library/Application\ Support/com.mitchellh.ghostty/config"
+    echo $GHOSTTY_CONFIG_DIR
+
+  else
+    echo "❌ Ghostty is only available on macOS. Skipping installation."
+  fi
+}
+
 all() {
   echo "Running all setup functions...\n"
   install_brew
+  install_ghostty
   setup_oh_my_zsh
   setup_zsh
   setup_cursor

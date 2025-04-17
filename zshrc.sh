@@ -63,11 +63,15 @@ alias ss="source ~/.zshrc"
 alias vi="nvim"
 alias vim="nvim"
 
+# Set vi mode
+# bindkey -v
+
 # Exports
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 # Oh my zsh config
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-plugins=(git autojump)
+plugins=(git autojump zsh-vi-mode)
 source $ZSH/oh-my-zsh.sh
