@@ -63,8 +63,8 @@ alias ss="source ~/.zshrc"
 alias vi="nvim"
 alias vim="nvim"
 
-# Set vi mode
-# bindkey -v
+# No delay between ESC and vi mode
+KEYTIMEOUT=1
 
 # Exports
 export PATH=/opt/homebrew/bin:$PATH
