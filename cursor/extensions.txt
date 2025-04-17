@@ -7,3 +7,4 @@ ms-vscode.remote-explorer
 streetsidesoftware.code-spell-checker
 ziyasal.vscode-open-in-github
 bradlc.vscode-tailwindcss
+hashicorp.terraform
