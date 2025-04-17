@@ -217,10 +217,10 @@ install_jetbrains_nerd_font() {
 
 all() {
   echo "Running all setup functions...\n"
-  # install_brew
-  # setup_oh_my_zsh
-  # setup_zsh
-  # setup_cursor
+  install_brew
+  setup_oh_my_zsh
+  setup_zsh
+  setup_cursor
   setup_vimchad
   install_jetbrains_nerd_font
   echo "✅ Setup completed successfully!"
