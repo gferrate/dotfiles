@@ -9,3 +9,4 @@ ziyasal.vscode-open-in-github
 bradlc.vscode-tailwindcss
 hashicorp.terraform
 dotenv.dotenv-vscode
+zxh404.vscode-proto3
