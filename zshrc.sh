@@ -62,6 +62,7 @@ create_pr() {
 alias ss="source ~/.zshrc"
 alias vi="nvim"
 alias vim="nvim"
+alias c="cursor"
 
 # No delay between ESC and vi mode
 KEYTIMEOUT=1
