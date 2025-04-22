@@ -152,7 +152,7 @@ install_brew() {
   fi
 
   # Define array of packages to install
-  PACKAGES=("git" "gh" "neovim" "zsh" "zsh-completions" "ripgrep" "autojump")
+  PACKAGES=("git" "gh" "neovim" "zsh" "zsh-completions" "ripgrep" "autojump" "scroll-reverser")
 
   # Install packages one by one
   echo "Installing required packages..."
