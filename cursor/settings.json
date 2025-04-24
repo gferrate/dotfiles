@@ -21,6 +21,14 @@
         "uerr"
     ],
     "vim.leader": ",",
+    "files.exclude": {
+        "**/.venv": true,
+        "**/node_modules": true
+    },
+    "search.exclude": {
+        "**/.venv": true,
+        "**/node_modules": true
+    },
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": [
