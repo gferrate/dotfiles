@@ -131,7 +131,7 @@
         }
     ],
     "editor.fontFamily": "JetBrainsMono Nerd Font",
-    "editor.fontLigatures": true,
+    "editor.fontLigatures": false,
     "explorer.confirmDelete": false,
     "workbench.colorTheme": "Default Dark Modern"
 }
