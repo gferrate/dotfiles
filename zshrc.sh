@@ -70,6 +70,7 @@ KEYTIMEOUT=1
 # Exports
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/usr/local/bin:$PATH
+export TERM=xterm-256color # ghostty thingy
 
 # Oh my zsh config
 export ZSH="$HOME/.oh-my-zsh"

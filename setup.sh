@@ -72,6 +72,10 @@ setup_zsh() {
   fi
 }
 
+setup_git() {
+  git config --global push.autoSetupRemote true
+}
+
 setup_cursor() {
   if ! command -v cursor &>/dev/null; then
     echo "❌ Cursor command not found. Cursor setup skipped."
@@ -248,6 +252,7 @@ all() {
   setup_cursor
   setup_vimchad
   install_jetbrains_nerd_font
+  setup_git
   echo "✅ Setup completed successfully!"
 }
 
