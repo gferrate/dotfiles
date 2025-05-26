@@ -19,6 +19,10 @@
     "**/.venv": true,
     "**/node_modules": true
   },
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "*.go": "${basename}_test.go"
+  },
   "search.exclude": {
     "**/.venv": true,
     "**/node_modules": true
