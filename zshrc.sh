@@ -63,7 +63,7 @@ alias ss="source ~/.zshrc"
 alias vi="nvim"
 alias vim="nvim"
 alias c="cursor"
-alias k="kubectx"
+alias k="kubectl"
 
 # No delay between ESC and vi mode
 KEYTIMEOUT=1
