@@ -5,7 +5,8 @@
   "datadog.staticAnalysis.notification.suppressOnboarding": true,
   "vim.hlsearch": true,
   "gopls": {
-    "ui.semanticTokens": true
+    "ui.semanticTokens": true,
+    "ui.completion.usePlaceholders": true
   },
   "editor.minimap.enabled": false,
   "workbench.editor.showTabs": true,
@@ -22,6 +23,9 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "*.go": "${basename}_test.go"
+  },
+  "go.testEnvVars": {
+    "GOLANG_PROTOBUF_REGISTRATION_CONFLICT": "warn"
   },
   "search.exclude": {
     "**/.venv": true,

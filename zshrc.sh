@@ -64,6 +64,8 @@ alias vi="nvim"
 alias vim="nvim"
 alias c="cursor"
 alias k="kubectl"
+alias x="chmod +x"
+alias ns='kubectl config set-context --current --namespace'
 
 # No delay between ESC and vi mode
 KEYTIMEOUT=1
