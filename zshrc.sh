@@ -66,6 +66,7 @@ alias c="cursor"
 alias k="kubectl"
 alias x="chmod +x"
 alias ns='kubectl config set-context --current --namespace'
+alias todos='vi ~/projects/todos/todos.md'
 
 # No delay between ESC and vi mode
 KEYTIMEOUT=1
