@@ -68,6 +68,7 @@ alias x="chmod +x"
 alias ns='kubectl config set-context --current --namespace'
 alias todos='vi ~/projects/todos/todos.md'
 alias cc='claude --dangerously-skip-permissions'
+alias todossave='cd ~/projects/todos/ && git add todos.md && git commit -m "TODO $(date +%Y-%m-%d)" && gp'
 
 # No delay between ESC and vi mode
 KEYTIMEOUT=1
