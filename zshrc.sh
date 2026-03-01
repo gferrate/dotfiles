@@ -67,6 +67,7 @@ alias k="kubectl"
 alias x="chmod +x"
 alias ns='kubectl config set-context --current --namespace'
 alias todos='vi ~/projects/todos/todos.md'
+alias cc='claude --dangerously-skip-permissions'
 
 # No delay between ESC and vi mode
 KEYTIMEOUT=1
@@ -75,6 +76,10 @@ KEYTIMEOUT=1
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export TERM=xterm-256color # ghostty thingy
+
+# For claude code etc
+export EDITOR=nvim
+
 
 # Oh my zsh config
 export ZSH="$HOME/.oh-my-zsh"
